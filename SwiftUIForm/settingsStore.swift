@@ -39,18 +39,39 @@ final class SettingStore: ObservableObject {
         ])
         
     }
+    
+    //ACCESO A DATOS BOOLEANOS
+    //ACCESO A DASTOS COMPLEJOS
+    //ACCESO A ENTEROS
+    //ACCESO A STRING
+    
+    // esto es un booleano
     var showCheckInOnly: Bool = UserDefaults.standard.bool(forKey: "view.preferenc es.showCheckInOnly") {
                 didSet {
+                    // lo azul es lo que hay en la mini bases de datos y lo que queremos es que lo guarde en lo rojo
+                    // para la llave esta guarda el valor que hay en lo azul ( esto es como un mapa clave valor
                     UserDefaults.standard.set(showCheckInOnly, forKey: "view.preferences.showCheckInOnly")
         }
     }
+    
+    // para ver que orden a elegido el usuario que es de tipo displayordertyoe
+    // aqui accede al enum por lo que es un objeto complejo y se necesitara el .rawvalue para no coger su hascode
     var displayOrder: DisplayOrderType = DisplayOrderType(type: UserDefaults.standard.integer(forKey: "view.preferences.displayOrder")) {
-didSet {
+        
+            didSet {
+    
+    // ponemos el rawvalue porque sino cogeria el hascode
 UserDefaults.standard.set(displayOrder.rawValue, forKey: "view.preferences.displayOrder")
         }
 }
-var maxPriceLevel: Int = UserDefaults.standard.integer(forKey: "view.preferenc es.maxPriceLevel") {
-didSet {
-UserDefaults.standard.set(maxPriceLevel, forKey: "view.preferences.maxPriceLevel")
-        }
+    
+    // crea la variable si lo has encontrado es un entero es distinto a lo de arriba
+    // si fuera un string seria string y luego el userdefaults.standard.string
+    var maxPriceLevel: Int = UserDefaults.standard.integer(forKey: "view.preferenc es.maxPriceLevel") {
+    
+    // aqui no ponemos el .rawvalue porque es un entero
+    
+            didSet {
+            UserDefaults.standard.set(maxPriceLevel, forKey: "view.preferences.maxPriceLevel")
+            }
 } }

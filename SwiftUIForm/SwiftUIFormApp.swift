@@ -9,9 +9,10 @@ import SwiftUI
 
 @main
 struct SwiftUIFormApp: App {
+    var almaceninical = SettingStore()
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView(almacen: almaceninical)
         }
     }
 }
